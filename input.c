@@ -33,6 +33,14 @@ int* tablica_z_podanymi_wspolczynnikami(int st){
         }
         break;
     }
+    int n = st;
+    printf("Liczony wielomian to:");
+    for(int i=0; i<n; i++){
+        printf("%dx^%d+",tablica_wspolczynnikow[i],st);
+        st--;
+        }
+    printf("%d\n",tablica_wspolczynnikow[n]);
+
 
     return tablica_wspolczynnikow;
 }
