@@ -8,6 +8,7 @@
 #include "monte_carlo.h"
 #include "simpson.h"
 #include "func.h"
+#include "data.h"
 
 
 
@@ -34,7 +35,9 @@ int main()
 
     printf("Przyblizona wartosc calki numerycznej metoda monte carlo z wielomianu to:%f\n",monte_carlo(a,b, TabY, n));
     printf("Przyblizona wartosc calki numerycznej metoda Simpsona z wielomianu to:%f\n",simpsons(a,b, tabY, n,tablica,st));
-   
+    double calka_monte = monte_carlo(a, b, TabY, n);
+    double calka_simpson = simpsons(a, b, tabY, n, tablica, st);
+    writePolynomialToFile(st,tablica, a, b, n, calka_monte, calka_simpson);
     writeDataToFile_monte(TabX,TabY,n);
     drawPlot_monte();
     writeDataToFile_simpson(tabX,tabY,n);
