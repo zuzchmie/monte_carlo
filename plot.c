@@ -3,7 +3,9 @@
 #include "plot.h"
 
 
-void drawPlot_monte(){ 
+void drawPlot(char* name_txt, char* plot_name){
+    char filename[100];
+    snprintf(filename, sizeof(filename), "calka_wykres_%s.txt Calka %s", name_txt, plot_name); 
     FILE *gnuplotPipeMonte = popen("gnuplot -persistent", "w");
     if (gnuplotPipeMonte != NULL) {
         fprintf(gnuplotPipeMonte, "set terminal pngcairo enhanced color\n");
@@ -20,22 +22,18 @@ void drawPlot_monte(){
 }
 
 void drawPlot_simpson(){ 
-    FILE *gnuplotPipeSimpson = popen("gnuplot -persistent", "w");
-    if (gnuplotPipeSimpson != NULL) {
-        fprintf(gnuplotPipeSimpson, "set terminal pngcairo enhanced color\n");
-        fprintf(gnuplotPipeSimpson, "set output 'calka_wykres_simpson.png'\n");
-        fprintf(gnuplotPipeSimpson, "set xlabel 'X'\n");
-        fprintf(gnuplotPipeSimpson, "set ylabel 'Y'\n");
-        fprintf(gnuplotPipeSimpson, "set title 'Calka Simpson'\n");
-        fprintf(gnuplotPipeSimpson, "plot 'plot_data_simpson.txt' smooth unique title 'Data'\n");
-    } else {
-        printf("Error: Gnuplot not found or unable to open a pipe.\n");
-        exit(EXIT_FAILURE);
-    }
+    drawPlot("simpson","Simpson");    
 }
 
-void writeDataToFile_monte(double x[],double y[],int n){
-    FILE *dataFile = fopen("plot_data_monte.txt", "w");
+
+void drawPlot_monte(){ 
+    drawPlot("monte","Monte Carlo");    
+}
+
+void writeDataToFile(char* name, double x[], double y[], int n) {
+    char filename [100];
+    snprintf(filename, sizeof(filename),"monte_carlo_%s.txt",name);
+    FILE *dataFile = fopen(filename, "w");
     if (dataFile != NULL) {
         for (int i = 0; i < n; i++) {
             fprintf(dataFile, "%f %f\n", x[i], y[i]);
@@ -45,17 +43,12 @@ void writeDataToFile_monte(double x[],double y[],int n){
         printf("Error: Unable to open data file.\n");
         exit(EXIT_FAILURE);
     }
+}
+
+void writeDataToFile_monte(double x[],double y[],int n) {
+    writeDataToFile("monte", x, y, n);
 }
 
 void writeDataToFile_simpson(double x[],double y[],int n){
-    FILE *dataFile = fopen("plot_data_simpson.txt", "w");
-    if (dataFile != NULL) {
-        for (int i = 0; i < n; i++) {
-            fprintf(dataFile, "%f %f\n", x[i], y[i]);
-        }
-        fclose(dataFile);
-    } else {
-        printf("Error: Unable to open data file.\n");
-        exit(EXIT_FAILURE);
-    }
+    writeDataToFile("simplson", x, y, n);
 }
