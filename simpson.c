@@ -17,7 +17,7 @@ void createTabXandTabY_simpson(double** xs,double** ys,int a, int b, int n, int 
     }
 }
 
-double simpsons(int a,int b,double ys[], int n,int tab[],int stopien){
+double simpsons(int a,int b, int n,int tab[],int stopien){
     double przedzial = (double) (b - a) / n;
     double suma = 0.0;
      

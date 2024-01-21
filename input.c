@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "input.h"
 #include <stdbool.h>
-
+//wciecia
 int stopien_wielomianu(){
     int st;
     while (true) {
@@ -40,7 +40,7 @@ int* tablica_z_podanymi_wspolczynnikami(int st){
         st--;
         }
     printf("%d\n",tablica_wspolczynnikow[n]);
-
+    //ładniej??
 
     return tablica_wspolczynnikow;
 }
@@ -58,7 +58,7 @@ int dolna_gr(){
                 while (getchar() != '\n');
             }
     }
-    return a;
+    return a; 
 }
 
 
