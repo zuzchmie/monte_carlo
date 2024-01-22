@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "data.h"
 
-void writePolynomialToFile(int st, int tab[],int a, int b, int n, double cal1, double cal2){
+void writePolynomialToFile(int st, int tab[],int a, int b, int n, double cal1, double cal2, double error){
     FILE *dataFile = fopen("data.txt", "a");
     if (dataFile != NULL) {
         fprintf(dataFile, "Dla wielomianu:\n ");
@@ -16,7 +16,9 @@ void writePolynomialToFile(int st, int tab[],int a, int b, int n, double cal1, d
         fprintf(dataFile, "dla %d ilosci probek:\n\n", n);
         fprintf(dataFile, "Monte Carlo:%f\n", cal1);
         fprintf(dataFile, "Simpson:%f\n\n", cal2);
+        fprintf(dataFile, "Bład obliczeniowy:%f\n\n", error);
         fprintf(dataFile, "-------------------------------------------------------------------\n");
+        
         fclose(dataFile);
     } else {
         printf("Error: Unable to open data file.\n");
