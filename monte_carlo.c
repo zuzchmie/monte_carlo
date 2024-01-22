@@ -23,13 +23,7 @@ void createTabXandTabYMonte(double** xs,double** ys, int a, int b, int n, int ta
         (*xs)[i] = xi;
         (*ys)[i] = f(xi, tab, stopien);
     }
-    /*for(int i = 0; i < n; i++){
-        printf("x:%f\n",xs[i]);
-        }
-
-    for(int i = 0; i < n; i++){
-        printf("y:%f\n",ys[i]);
-        }//drukowanie tablic z wart x i y*/
+    
 }
 
 
@@ -42,10 +36,7 @@ double monteCarlo(int a,int b, double ys[], int n){
         suma += ys[i];
     
     }
-    /*for(int i = 0; i < n; i++){
-        printf("y:%f\n",ys[i]);
-        }
-    for (int i = 0; i < n; i++) suma += ys[i];*/
+  
 
     // Obliczenie przybliżonej wartości całki
    double calka = (suma * szerokosc_przedzialu) / n; // Obliczenie przybliżonej wartości całki
