@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra
 
 # lista plikow .o
-OBJECTS = func.o input.o main.o monte_carlo.o plot.o simpson.o data.o
+OBJECTS = func.o input.o main.o monte_carlo.o plot.o simpson.o data.o calculation_error.o
 PNG = calka_wykres_monte.png calka_wykres_simpson.png 
 TXT = plot_data_monte.txt plot_data_simpson.txt
 all: Monte_carlo
@@ -23,4 +23,3 @@ clean:
 
 run: Monte_carlo
 	 ./Monte_carlo
-
