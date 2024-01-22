@@ -9,7 +9,7 @@
 #include "simpson.h"
 #include "func.h"
 #include "data.h"
-
+#include "calculation_error.h"
 
 
 int main()
@@ -38,15 +38,19 @@ int main()
     printf("Przyblizona wartosc calki numerycznej metoda Monte Carlo z wielomianu to: %f\n\n",monteCarlo(a, b, TabY, n));
     printf("Przyblizona wartosc calki numerycznej metoda Simpsona z wielomianu to: %f\n\n",simpson(a, b, n, arrayCoefficients, degree));
     
-    double calka_monte = monteCarlo(a, b, TabY, n);
-    double calka_simpson = simpson(a, b, n, arrayCoefficients, degree);
+    double integrationMonte = monteCarlo(a, b, TabY, n);
+    double integrationSimpson = simpson(a, b, n, arrayCoefficients, degree);
+    double errorMonte = error(TabY, n, integrationMonte);
     
-    writePolynomialToFile(degree, arrayCoefficients, a, b, n, calka_monte, calka_simpson);
+    writePolynomialToFile(degree, arrayCoefficients, a, b, n, integrationMonte, integrationSimpson, errorMonte);
     
     writeDataToFileMonte(TabX, TabY, n);
     drawPlotMonte();
+   
     writeDataToFileSimpson(tabX, tabY, n);
     drawPlotSimpson();
+    
+    printf("Bląd obliczeniowy wynosi:%f\n\n", error(TabY, n, integrationMonte));
     
     free(TabX);
     free(TabY); 
