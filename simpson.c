@@ -5,7 +5,7 @@
 
 
 
-void createTabXandTabY_simpson(double** xs,double** ys,int a, int b, int n, int tab[],int stopien){
+void createTabXandTabYSimpson(double** xs,double** ys,int a, int b, int n, int tab[],int stopien){
     double przedzial = (double)(b - a)/n;
     (*xs) = (double*) malloc(n*sizeof(double*));
     (*ys) = (double*) malloc(n*sizeof(double*));
@@ -17,7 +17,7 @@ void createTabXandTabY_simpson(double** xs,double** ys,int a, int b, int n, int 
     }
 }
 
-double simpsons(int a,int b, int n,int tab[],int stopien){
+double simpson(int a,int b, int n,int tab[],int stopien){
     double przedzial = (double) (b - a) / n;
     double suma = 0.0;
      

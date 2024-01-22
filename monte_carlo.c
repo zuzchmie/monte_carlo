@@ -5,11 +5,18 @@
 #include "func.h"
 
 
-void createTabXandTabY_monte(double** xs,double** ys, int a, int b, int n, int tab[], int stopien) {
+void createTabXandTabYMonte(double** xs,double** ys, int a, int b, int n, int tab[], int stopien) {
+    
     srand(time(NULL)); 
     double szerokosc_przedzialu =(double) b - a;
-    (*xs) = (double*) malloc(n*sizeof(double*));
-    (*ys) = (double*) malloc(n*sizeof(double*));
+   
+ 
+    *xs = (double*) malloc(n*sizeof(double));
+    *ys = (double*) malloc(n*sizeof(double));
+
+    if (*xs == NULL || *ys == NULL) {
+    fprintf(stderr, "Memory allocation failed\n");
+    exit(EXIT_FAILURE);}
  
     for (int i = 0; i < n; i++) {
         double xi = a + ((double)rand() / RAND_MAX) * szerokosc_przedzialu; // Losowa wartość z zakresu [a, b]
@@ -25,7 +32,8 @@ void createTabXandTabY_monte(double** xs,double** ys, int a, int b, int n, int t
         }//drukowanie tablic z wart x i y*/
 }
 
-double monte_carlo(int a,int b, double ys[], int n){
+
+double monteCarlo(int a,int b, double ys[], int n){
     double suma = 0.0;
     double szerokosc_przedzialu = (double) b - a;
 
