@@ -56,10 +56,3 @@ void writeDataToFileMonte(double x[],double y[],int n) {
 void writeDataToFileSimpson(double x[],double y[],int n){
     writeDataToFile("simpson", x, y, n);
 }
-/*
-char* name_png, char* plot_name
-char filename[100];
-    char filename1[100];
-    snprintf(filename, sizeof(filename), "%s", name_png); 
-    snprintf(filename1, sizeof(filename1), "%s", plot_name);
-    */
