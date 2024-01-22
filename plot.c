@@ -3,9 +3,7 @@
 #include "plot.h"
 
 
-void drawPlot(char* name_txt, char* plot_name){
-    char filename[100];
-    snprintf(filename, sizeof(filename), "calka_wykres_%s.txt Calka %s", name_txt, plot_name); 
+void drawPlotMonte(){ 
     FILE *gnuplotPipeMonte = popen("gnuplot -persistent", "w");
     if (gnuplotPipeMonte != NULL) {
         fprintf(gnuplotPipeMonte, "set terminal pngcairo enhanced color\n");
@@ -21,18 +19,24 @@ void drawPlot(char* name_txt, char* plot_name){
     }
 }
 
-void drawPlot_simpson(){ 
-    drawPlot("simpson","Simpson");    
-}
-
-
-void drawPlot_monte(){ 
-    drawPlot("monte","Monte Carlo");    
+void drawPlotSimpson(){ 
+    FILE *gnuplotPipeSimpson = popen("gnuplot -persistent", "w");
+    if (gnuplotPipeSimpson != NULL) {
+        fprintf(gnuplotPipeSimpson, "set terminal pngcairo enhanced color\n");
+        fprintf(gnuplotPipeSimpson, "set output 'calka_wykres_simpson.png'\n");
+        fprintf(gnuplotPipeSimpson, "set xlabel 'X'\n");
+        fprintf(gnuplotPipeSimpson, "set ylabel 'Y'\n");
+        fprintf(gnuplotPipeSimpson, "set title 'Calka Simpson'\n");
+        fprintf(gnuplotPipeSimpson, "plot 'plot_data_simpson.txt' smooth unique title 'Data'\n");
+    } else {
+        printf("Error: Gnuplot not found or unable to open a pipe.\n");
+        exit(EXIT_FAILURE);
+    }
 }
 
 void writeDataToFile(char* name, double x[], double y[], int n) {
     char filename [100];
-    snprintf(filename, sizeof(filename),"monte_carlo_%s.txt",name);
+    snprintf(filename, sizeof(filename),"plot_data_%s.txt",name);
     FILE *dataFile = fopen(filename, "w");
     if (dataFile != NULL) {
         for (int i = 0; i < n; i++) {
@@ -45,10 +49,17 @@ void writeDataToFile(char* name, double x[], double y[], int n) {
     }
 }
 
-void writeDataToFile_monte(double x[],double y[],int n) {
+void writeDataToFileMonte(double x[],double y[],int n) {
     writeDataToFile("monte", x, y, n);
 }
 
-void writeDataToFile_simpson(double x[],double y[],int n){
-    writeDataToFile("simplson", x, y, n);
+void writeDataToFileSimpson(double x[],double y[],int n){
+    writeDataToFile("simpson", x, y, n);
 }
+/*
+char* name_png, char* plot_name
+char filename[100];
+    char filename1[100];
+    snprintf(filename, sizeof(filename), "%s", name_png); 
+    snprintf(filename1, sizeof(filename1), "%s", plot_name);
+    */
